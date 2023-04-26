@@ -1,0 +1,26 @@
+CREATE TABLE CurrencyRates(
+    currencyName TEXT PRIMARY KEY,
+    currencyRate REAL
+);
+
+
+getAllCurrencyRates:
+SELECT * FROM CurrencyRates;
+
+
+getCurrencyRateByName:
+SELECT * FROM CurrencyRates
+WHERE currencyName = ?;
+
+insertCurrencyRate:
+INSERT OR REPLACE
+INTO CurrencyRates(currencyName, currencyRate)
+VALUES (?,?);
+
+
+deleteAllCurrencyRates:
+DELETE FROM CurrencyRates;
+
+deleteCurrencyRateByName:
+DELETE FROM CurrencyRates
+WHERE currencyName = ?;
