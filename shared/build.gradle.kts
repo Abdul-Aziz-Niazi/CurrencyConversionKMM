@@ -36,8 +36,11 @@ kotlin {
         val ktorVersion = "2.2.1"
         val napierVersion = "2.6.1"
         val sqlDelightVersion = "1.5.5"
+        val koinVersion = "3.4.0"
         val commonMain by getting {
             dependencies {
+                //SL
+                implementation("io.insert-koin:koin-core:$koinVersion")
                 //SQLDelight
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 //KTOR
@@ -58,6 +61,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                api("io.insert-koin:koin-android:$koinVersion")
                 implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
                 implementation("io.ktor:ktor-client-android:$ktorVersion")

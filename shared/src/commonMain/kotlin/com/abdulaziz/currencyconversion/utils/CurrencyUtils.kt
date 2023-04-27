@@ -5,7 +5,7 @@ import com.abdulaziz.currencyconversion.data.model.CurrencyRateData
 object CurrencyUtils {
     private const val DEFAULT_CURRENCY = "USD"
 
-    fun convert(rate: Double, amount: Double, selectedCurrency: CurrencyRateData): Double {
+    fun convertRate(rate: Double, amount: Double, selectedCurrency: CurrencyRateData): Double {
         val convertedResult = if (selectedCurrency.currencyName == DEFAULT_CURRENCY) {
             (rate * amount)
         } else {

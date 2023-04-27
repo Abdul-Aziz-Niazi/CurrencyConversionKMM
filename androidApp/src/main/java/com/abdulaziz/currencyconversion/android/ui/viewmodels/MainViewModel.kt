@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abdulaziz.currencyconversion.android.ui.HomeState
 import com.abdulaziz.currencyconversion.android.ui.HomeViewState
 import com.abdulaziz.currencyconversion.data.local.DatabaseDriverFactory
 import com.abdulaziz.currencyconversion.data.model.CurrencyRateData
@@ -31,9 +30,8 @@ class MainViewModel : ViewModel() {
         const val DEFAULT_BASE_VALUE = 1.0
     }
 
-    val currencyList = listOf("USD", "EUR", "GBP", "AUD", "CAD", "JPY", "KWD", "AED", "INR", "BTC", "PKR")
-
     private val useCase = DefaultCurrencyUseCase()
+    val currencyList = useCase.selectableCurrency
     lateinit var localUseCase: LocalUseCase
     private val decimalPattern = Regex("^\\d*\\.?\\d*\$")
     private lateinit var preference: Prefs
@@ -103,7 +101,7 @@ class MainViewModel : ViewModel() {
 
         val amountMultiplier = if (baseValue.isEmpty()) DEFAULT_BASE_VALUE else baseValue.toDouble()
 
-        return mutableStateOf(CurrencyUtils.convert(rate, amountMultiplier, selectedCurrency).toString())
+        return mutableStateOf(CurrencyUtils.convertRate(rate, amountMultiplier, selectedCurrency).toString())
     }
 
     fun updatedValue(it: String): String {
