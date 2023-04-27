@@ -31,7 +31,7 @@ class MainViewModel : ViewModel() {
     }
 
     private val useCase = DefaultCurrencyUseCase()
-    val currencyList = useCase.selectableCurrency
+    val currencyList = CurrencyUtils.selectableCurrency
     lateinit var localUseCase: LocalUseCase
     private val decimalPattern = Regex("^\\d*\\.?\\d*\$")
     private lateinit var preference: Prefs

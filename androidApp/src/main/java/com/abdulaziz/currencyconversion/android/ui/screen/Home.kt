@@ -1,10 +1,12 @@
 package com.abdulaziz.currencyconversion.android.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -17,8 +19,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.abdulaziz.currencyconversion.android.theme.AppStyles
+import com.abdulaziz.currencyconversion.android.theme.fromHex
 import com.abdulaziz.currencyconversion.android.ui.viewmodels.MainViewModel
 import com.abdulaziz.currencyconversion.data.model.CurrencyRateData
+import com.abdulaziz.currencyconversion.theme.purple500
 import kotlinx.coroutines.flow.collectLatest
 
 
@@ -37,7 +41,7 @@ fun Home() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp)
+            .padding(8.dp).padding(horizontal = 8.dp)
     ) {
 
         LaunchedEffect(key1 = mainViewModel) {
@@ -53,7 +57,8 @@ fun Home() {
             onClick = {
                 showDialog = true
             }, modifier = Modifier
-                .padding(vertical = 8.dp)
+                .padding(vertical = 4.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.fromHex(purple500))
         ) {
             Text(text = "Selected $selectedCurrency", style = AppStyles.textBodySemiBold)
         }
@@ -94,14 +99,19 @@ private fun CurrencyTextField(
             mainViewModel.baseValue = mainViewModel.updatedValue(it)
         }, modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White),
+            .height(50.dp)
+            .background(Color.White)
+            .border(1.dp, Color.Gray, RoundedCornerShape(4.dp)),
         label = { Text(text = "Amount in $selectedCurrency") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         colors = TextFieldDefaults.textFieldColors(
-            focusedIndicatorColor = Color.Black,
+            focusedIndicatorColor = Color.White,
+            unfocusedIndicatorColor = Color.White,
             focusedLabelColor = Color.Black,
-            cursorColor = Color.Black
-        )
+            cursorColor = Color.Black,
+            backgroundColor = Color.White,
+        ),
+        shape = RoundedCornerShape(4.dp),
     )
 }
 

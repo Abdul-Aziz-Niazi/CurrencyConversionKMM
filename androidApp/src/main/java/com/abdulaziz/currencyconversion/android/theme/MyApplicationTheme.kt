@@ -14,6 +14,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.abdulaziz.currencyconversion.theme.purple500
+import com.abdulaziz.currencyconversion.theme.purple700
 
 @Composable
 fun MyApplicationTheme(
@@ -22,15 +24,15 @@ fun MyApplicationTheme(
 ) {
     val colors = if (darkTheme) {
         darkColors(
-            primary = Color(0xFFBB86FC),
-            primaryVariant = Color(0xFF3700B3),
+            primary = Color.fromHex(purple500),
+            primaryVariant = Color.fromHex(purple700),
             secondary = Color(0xFF03DAC5),
             background = Color.Black
         )
     } else {
         lightColors(
-            primary = Color(0xFF6200EE),
-            primaryVariant = Color(0xFF3700B3),
+            primary = Color.fromHex(purple500),
+            primaryVariant = Color.fromHex(purple700),
             secondary = Color(0xFF03DAC5),
             background = Color.Black
 

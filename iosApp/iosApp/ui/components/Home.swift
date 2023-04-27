@@ -13,7 +13,7 @@ import Combine
 
 struct Home:View {
     @EnvironmentObject var viewModel:MainViewModel
-    @State private var text: String = "1"
+    @State private var text: String = ""
     @State var showAlert = false
     @State var selectedCurrency:String = "USD"
     var items = ["Item 1", "Item 2", "Item 3"]
@@ -65,7 +65,7 @@ struct Home:View {
                 Button(action: {
                     showAlert = true
                 }) {
-                    Text("Selected \(selectedCurrency)")
+                    Text("Selected \(selectedCurrency)").font(.system(size:14, weight: Font.Weight.medium)).padding(4)
                 }.sheet(isPresented: $showAlert) {
                     VStack{
                         Text("Currency").foregroundColor(.black).font(.system(size:18, weight:Font.Weight.bold))
@@ -81,10 +81,10 @@ struct Home:View {
                     }
                 }.buttonStyle(BorderedButtonStyle())
                     .foregroundColor(.white)
-                    .background(.purple)
+                    .background(Color(hex: ColorKt.purple500))
                     .cornerRadius(4)
                 Spacer()
-            }.padding(.horizontal)
+            }.padding(.vertical,4).padding(.horizontal)
             List(viewModel.currencyData ?? [], id: \.currencyName) { item in
                 HStack{
                     let textVar = !text.isEmpty && text.allSatisfy { $0.isNumber || $0 == "." || $0 == "-" } ? text : "1"

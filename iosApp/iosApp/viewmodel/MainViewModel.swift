@@ -16,7 +16,7 @@ class MainViewModel: ObservableObject{
     @Published var errorText:String? = ""
     
     func getList()->[String]{
-        return useCase.selectableCurrency
+        return CurrencyUtils.shared.selectableCurrency
     }
     func refreshData(){
         let flow = useCase.getAllRates()
