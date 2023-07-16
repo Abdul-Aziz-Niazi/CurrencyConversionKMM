@@ -95,13 +95,17 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    @Throws(IllegalArgumentException::class)
     fun convertRate(rate: Double?, selectedCurrency: CurrencyRateData): MutableState<String> {
         if (rate == null) throw IllegalArgumentException("Rate cannot be null")
-        if (baseValue.isDigitsOnly().not() && baseValue.matches(decimalPattern).not()) throw IllegalArgumentException("Base should be a number")
+        if (baseValue.isDigitsOnly().not() && baseValue.matches(CurrencyUtils.decimalPattern)
+                .not()
+        ) throw IllegalArgumentException("Base should be a number")
 
-        val amountMultiplier = if (baseValue.isEmpty()) DEFAULT_BASE_VALUE else baseValue.toDouble()
+        val amountMultiplier = baseValue.ifEmpty { "1" }
+        val convertedRate = CurrencyUtils.convertRate(rate, amountMultiplier, selectedCurrency)
 
-        return mutableStateOf(CurrencyUtils.convertRate(rate, amountMultiplier, selectedCurrency).toString())
+        return mutableStateOf(convertedRate)
     }
 
     fun updatedValue(it: String): String {

@@ -16,17 +16,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.abdulaziz.currencyconversion.android.theme.AppStyles
 import com.abdulaziz.currencyconversion.android.theme.MyApplicationTheme
+import com.abdulaziz.currencyconversion.android.theme.fromHex
 import com.abdulaziz.currencyconversion.android.ui.screen.Home
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val systemUiController = rememberSystemUiController()
             MaterialTheme {
+                systemUiController.setSystemBarsColor(
+                    color = Color.fromHex("#0063cc")
+                )
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Black),
+                        .background(Color.fromHex("#0063cc")),
                     topBar = {
                         TopBar()
                     },
@@ -43,13 +49,13 @@ class MainActivity : ComponentActivity() {
         TopAppBar(
             title = {
                 Text(
-                    text = stringResource(id = R.string.app_name),
+                    text = stringResource(id = R.string.app_name) +" \uD83D\uDCB9",
                     style = AppStyles.textSubtitle.copy(color = Color.White),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
             },
-            backgroundColor = Color.Black,
+            backgroundColor =Color.fromHex("#0063cc"),
             contentColor = Color.White
         )
     }

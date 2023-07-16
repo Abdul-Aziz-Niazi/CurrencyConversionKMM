@@ -60,7 +60,7 @@ fun Home() {
                 .padding(vertical = 4.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.fromHex(purple500))
         ) {
-            Text(text = "Selected $selectedCurrency", style = AppStyles.textBodySemiBold)
+            Text(text = "\uD83D\uDFE1 Selected $selectedCurrency", style = AppStyles.textBodySemiBold)
         }
 
         CurrencyList(currencyData, mainViewModel, selectedCurrency)
